@@ -1,26 +1,24 @@
 {
-  "name": "mcy689/sms-filter",
-  "keywords": [
-    "sms",
-    "bank",
-    "analyse"
-  ],
-  "description": "Analyse bank sms",
-  "type": "library",
-  "require": {
-    "php": ">=5.4"
-  },
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "mcy689",
-      "email": "nideshijian@gmail.com"
+    "name": "mcy689/sms-filter",
+    "keywords": [
+        "sms",
+        "bank",
+        "analyse"
+    ],
+    "description": "Analyse bank sms",
+    "type": "library",
+    "require": {
+        "php": ">=5.4"
+    },
+    "license": "MIT",
+    "authors": [{
+        "name": "mcy689",
+        "email": "nideshijian@gmail.com"
+    }],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Mcy689\\SmsFilter\\": "src"
+        }
     }
-  ],
-  "minimum-stability": "stable",
-  "autoload": {
-    "psr-4": {
-      "Mcy689\\SmsFilter\\": "src"
-    }
-  }
 }
