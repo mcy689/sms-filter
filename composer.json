@@ -17,7 +17,7 @@
       "email": "nideshijian@gmail.com"
     }
   ],
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
       "Mcy689\\SmsFilter\\": "src"
