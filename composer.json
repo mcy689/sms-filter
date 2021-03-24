@@ -15,7 +15,6 @@
         "name": "mcy689",
         "email": "nideshijian@gmail.com"
     }],
-    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "Mcy689\\SmsFilter\\": "src"
