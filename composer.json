@@ -2,13 +2,12 @@
     "name": "mcy689/sms-filter",
     "keywords": [
         "sms",
-        "bank",
-        "analyse"
+        "bank"
     ],
     "description": "Analyse bank sms",
     "type": "library",
     "require": {
-        "php": ">=5.4"
+        "php": ">=7.0"
     },
     "license": "MIT",
     "authors": [{
