@@ -22,15 +22,11 @@ class PSBC extends BankBase
     private $bankName = '中国邮政储蓄银行';
 
     /**
-     * @return array|mixed
+     * @return array
      * @throws MatchException
      */
-    public function dispatch()
+    public function dispatch(): array
     {
-        $auth = strpos($this->message, '验证码');
-        if ($auth !== false) {
-            return $this->authCode();
-        }
         $pos = strpos($this->message, '汇款金额');
         if ($pos !== false) {
             $data = $this->transfers();
@@ -42,10 +38,10 @@ class PSBC extends BankBase
 
     /**
      * 匹配提现
-     * @return array|mixed
+     * @return array
      * @throws MatchException
      */
-    protected function transfers()
+    protected function transfers(): array
     {
         $pattern = '/(\d{3,4}).*向(.*)尾.*金额(\d+(\.\d{1,2})?)/';
         $result = preg_match($pattern, $this->message, $matches);
@@ -57,10 +53,10 @@ class PSBC extends BankBase
 
     /**
      * 匹配支付
-     * @return array|mixed
+     * @return array
      * @throws MatchException
      */
-    protected function pay()
+    protected function pay(): array
     {
         $pattern = '/(\d{3,4})\D+(\d+(\.\d{1,2})?)\D+(\d+(\.\d{1,2})?)/';
         $result = preg_match($pattern, $this->message, $matches);
@@ -68,14 +64,5 @@ class PSBC extends BankBase
             throw new MatchException("Match failed");
         }
         return $this->back($matches[1], $this->units($matches[2]), $this->bankName, $this->units($matches[4]), self::PAY);
-    }
-
-    /**
-     * 匹配验证码
-     * @return array|mixed
-     */
-    protected function authCode()
-    {
-        return $this->bankCode($this->bankName);
     }
 }

@@ -30,8 +30,4 @@ class Operator extends BankBase
     protected function pay()
     {
     }
-
-    protected function authCode()
-    {
-    }
 }

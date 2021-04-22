@@ -7,11 +7,19 @@ abstract class BankBase
     const TRANSFERS = 2;    //提现
     const AUTH_CODE = 3;    //验证码
     const OPERATOR = 4;     //运营商短信
-    protected $message = '';
+    protected $message = null;
+    protected $bankName = null;
 
     public function __construct($message)
     {
         $this->message = $message;
+        $filter = ['验证码', '短信', '动态密码', '动态码'];
+        foreach ($filter as $item) {
+            $auth = strpos($this->message, $item);
+            if ($auth !== false) {
+                return $this->back(0, 0, $this->bankName, 0, self::AUTH_CODE);
+            }
+        }
     }
 
     /**
@@ -33,25 +41,13 @@ abstract class BankBase
     abstract protected function pay();
 
     /**
-     * 验证码
-     * @return mixed
-     */
-    abstract protected function authCode();
-
-    /**
      * 公共返回
-     * @param $card
-     *          卡尾号
-     * @param $amount
-     *          金额，单位：分
-     * @param $bank
-     *          银行名称
-     * @param $balance
-     *          余额
-     * @param $type
-     *          类型，支付还是提现
-     * @param $isBalance
-     *          是否成功获取余额
+     * @param string $card 卡尾号
+     * @param int $amount 金额，单位：分
+     * @param string $bank 银行名称
+     * @param int $balance 余额
+     * @param int $type 短信类型
+     * @param bool $isBalance 是否成功获取余额
      * @return array
      */
     protected function back($card, $amount, $bank, $balance, $type, $isBalance = true)
@@ -71,16 +67,6 @@ abstract class BankBase
     protected function backTr($card, $amount, $name, $bank, $type)
     {
         return ['card' => $card, 'amount' => $amount, 'bank' => $bank, 'name' => $name, 'type' => $type];
-    }
-
-    /**
-     * 短信验证码，公共返回
-     * @param $bank
-     * @return array
-     */
-    protected function bankCode($bank)
-    {
-        return $this->back(0, 0, $bank, 0, self::AUTH_CODE);
     }
 
     /**
