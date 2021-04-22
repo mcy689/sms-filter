@@ -18,6 +18,8 @@ use  Mcy689\SmsFilter\BankBase;
  */
 class Operator extends BankBase
 {
+    protected $bankName = '运营商短信';
+
     public function dispatch()
     {
         return $this->back(0, 0, '', 0, self::OPERATOR);

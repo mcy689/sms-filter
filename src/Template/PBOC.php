@@ -19,7 +19,7 @@ use Mcy689\SmsFilter\Exceptions\MatchException;
  */
 class PBOC extends BankBase
 {
-    private $bankName = '兴业银行';
+    protected $bankName = '兴业银行';
 
     /**
      * 分析
